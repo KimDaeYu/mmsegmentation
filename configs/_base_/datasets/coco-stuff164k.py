@@ -1,9 +1,11 @@
 # dataset settings
-dataset_type = 'COCOStuffDataset'
-data_root = 'data/coco_stuff164k'
+dataset_type = 'CustomDataset'
+data_root = "C:/Users/mai/Bowel_Movement_Cleaness/data/bmc_label_voc_split"
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 crop_size = (512, 512)
+
+classes = ("Background", "0", "1", "2")
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
@@ -32,23 +34,26 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=4,
+    samples_per_gpu=2,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='images/train2017',
-        ann_dir='annotations/train2017',
+        img_dir='images/train',
+        ann_dir='annotations/train',
+        classes=classes,
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='images/val2017',
-        ann_dir='annotations/val2017',
+        img_dir='images/val',
+        ann_dir='annotations/val',
+        classes=classes,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='images/val2017',
-        ann_dir='annotations/val2017',
+        img_dir='images/val',
+        ann_dir='annotations/val',
+        classes=classes,
         pipeline=test_pipeline))
