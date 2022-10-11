@@ -4,7 +4,7 @@ _base_ = [
 ]
 checkpoint = "open-mmlab://resnet50_v1c"
 
-model = dict(pretrained=checkpoint)
+model = dict(pretrained=checkpoint,decode_head=dict(num_classes=150))
 
 # optimizer
 optimizer = dict(

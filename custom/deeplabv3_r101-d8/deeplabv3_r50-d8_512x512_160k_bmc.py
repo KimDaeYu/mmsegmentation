@@ -2,10 +2,10 @@ _base_ = [
     './deeplabv3_r50-d8.py',
     './bmc_dataset.py',
     '../default_runtime.py',
-    './schedule_80k.py'
+    './schedule_160k.py'
 ]
 model = dict(
-    decode_head=dict(num_classes=3), auxiliary_head=dict(num_classes=3))
+    decode_head=dict(num_classes=150), auxiliary_head=dict(num_classes=150))
 
 # optimizer
 optimizer = dict(
