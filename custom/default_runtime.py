@@ -1,4 +1,6 @@
 # yapf:disable
+import sys
+
 log_config = dict(
     interval=50,
     hooks=[
@@ -8,7 +10,8 @@ log_config = dict(
         dict(type='MMSegWandbHook',
             init_kwargs={
                 'entity': "inha_mai",
-                'project': "BMC_vision"
+                'project': "BMC_vision",
+                'name' : sys.argv[1].split('\\')[-1][:-3]
             },
             interval=50,
             log_checkpoint=True,
