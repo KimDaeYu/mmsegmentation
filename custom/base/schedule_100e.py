@@ -15,15 +15,16 @@ optimizer_config = dict(grad_clip=dict(max_norm=10, norm_type=2))
 lr_config = dict(
     policy='poly',
     warmup='linear',
-    warmup_iters=1500,
+    warmup_iters=1,
     warmup_ratio=1e-6,
+    warmup_by_epoch=True,
     power=1.0,
     min_lr=0.0,
-    by_epoch=False)
+    by_epoch=True)
 
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=100)
+runner = dict(type='EpochBasedRunner', max_epochs=40)
 checkpoint_config = dict(interval=5)
-evaluation = dict(metric='mIoU', pre_eval=True)
+evaluation = dict(metric='mIoU', pre_eval=True, by_epoch=True)
 
 seed=19980507

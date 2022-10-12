@@ -1,6 +1,6 @@
 _base_ = [
     './lraspp_m-v3-d8.py',
-    '../base/bmc_dataset_1024x512.py',
+    '../base/bmc_dataset_1024x512_NoPMD.py',
     '../base/default_runtime.py',
     '../base/schedule_100e.py'
 ]
