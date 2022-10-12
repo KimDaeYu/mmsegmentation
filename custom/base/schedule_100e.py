@@ -22,7 +22,7 @@ lr_config = dict(
     by_epoch=False)
 
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=40)
+runner = dict(type='EpochBasedRunner', max_epochs=100)
 checkpoint_config = dict(interval=5)
 evaluation = dict(metric='mIoU', pre_eval=True)
 
