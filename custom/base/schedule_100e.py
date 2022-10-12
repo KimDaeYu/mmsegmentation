@@ -1,15 +1,5 @@
-_base_ = [
-    './deeplabv3_r50-d8.py',
-    './bmc_dataset.py',
-    '../default_runtime.py',
-    './schedule_160k.py'
-]
-model = dict(
-    decode_head=dict(num_classes=150), auxiliary_head=dict(num_classes=150))
-
 # optimizer
 optimizer = dict(
-    _delete_=True,
     type='AdamW',
     lr=0.00006,
     betas=(0.9, 0.999),
@@ -20,9 +10,9 @@ optimizer = dict(
             'norm': dict(decay_mult=0.),
             'head': dict(lr_mult=10.)
         }))
+optimizer_config = dict(grad_clip=dict(max_norm=10, norm_type=2))
 
 lr_config = dict(
-    _delete_=True,
     policy='poly',
     warmup='linear',
     warmup_iters=1500,
@@ -31,4 +21,9 @@ lr_config = dict(
     min_lr=0.0,
     by_epoch=False)
 
-data = dict(samples_per_gpu=2, workers_per_gpu=2)
+# runtime settings
+runner = dict(type='EpochBasedRunner', max_epochs=40)
+checkpoint_config = dict(interval=5)
+evaluation = dict(metric='mIoU', pre_eval=True)
+
+seed=19980507
