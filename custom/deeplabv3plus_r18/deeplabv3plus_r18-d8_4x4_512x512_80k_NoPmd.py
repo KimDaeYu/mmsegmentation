@@ -1,4 +1,10 @@
-_base_ = '../deeplabv3plus_r50/deeplabv3plus_r50-d8_4x4_512x512_80k_NoPmd.py'
+_base_ = [
+    './deeplabv3plus_r50-d8.py',
+    '../base/bmc_dataset_512x512_NoPMD.py',
+    '../base/default_runtime.py',
+    '../base/schedule_100e.py'
+]
+
 model = dict(
     pretrained='open-mmlab://resnet18_v1c',
     backbone=dict(depth=18),
